@@ -3,16 +3,24 @@ name: manual-1
 
 on:
   workflow_dispatch:
+    inputs:
+      execution_source:
+        description: 'manual'
+        required: true
   workflow_call:
+    inputs:
+      execution_source:
+        required: true
+        type: string
 
 jobs:
   message:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
     steps:
     - name: message
       uses: actions/github-script@v6
       id: set-result
       with:
-        script: return "manual-1 の Actions"
+        script: return "manual-1 の Actions。実行元 = ${{github.event.inputs.execution_source}}"
         result-encoding: string
