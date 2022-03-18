@@ -25,7 +25,7 @@ jobs:
         result-encoding: string
 
   aws-deploy:
-    needs: [message]
+    needs: [merge-message]
     uses: ./.github/workflows/manual-aws-deploy.yml
     with:
       execution_source: "Branch (main)"
