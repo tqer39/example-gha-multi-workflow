@@ -1,11 +1,11 @@
 ---
-name: manual-1
+name: Manual Message
 
 on:
   workflow_dispatch:
     inputs:
       execution_source:
-        description: 'manual'
+        description: 'Manual Message'
         required: true
   workflow_call:
     inputs:
