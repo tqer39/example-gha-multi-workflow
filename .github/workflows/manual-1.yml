@@ -22,5 +22,5 @@ jobs:
       uses: actions/github-script@v6
       id: set-result
       with:
-        script: return "manual-1 の Actions。実行元 = ${{github.event.inputs.execution_source}}"
+        script: return "manual-1 の Actions。実行元 = ${{ inputs.execution_source }}"
         result-encoding: string
