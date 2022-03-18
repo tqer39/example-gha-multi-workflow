@@ -12,13 +12,13 @@ jobs:
     with:
       execution_source: "Branch (main)"
 
-  call-workflow-manual-2:
-    uses: tqer39/example-gha-multi-workflow/.github/workflows/manual-2.yml@main
+  call-workflow-manual-2-local:
+    uses: ./.github/workflows/manual-2.yml
     with:
       execution_source: "Branch (main)"
 
   message:
-    needs: [call-workflow-manual-1, call-workflow-manual-2]
+    needs: [call-workflow-manual-1, call-workflow-manual-2-local]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
