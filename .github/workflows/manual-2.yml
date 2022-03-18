@@ -3,6 +3,7 @@ name: manual-2
 
 on:
   workflow_dispatch:
+  workflow_call:
 
 jobs:
   message:
