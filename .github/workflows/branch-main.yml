@@ -24,8 +24,8 @@ jobs:
         script: return "main ブランチにマージされた の Actions"
         result-encoding: string
 
-  call-workflow-manual-2-local:
+  aws-deploy:
     needs: [message]
-    uses: ./.github/workflows/manual-2.yml
+    uses: ./.github/workflows/manual-aws-deploy.yml
     with:
       execution_source: "Branch (main)"
