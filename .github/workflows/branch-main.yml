@@ -12,13 +12,8 @@ jobs:
     with:
       execution_source: "Branch (main)"
 
-  call-workflow-manual-2-local:
-    uses: ./.github/workflows/manual-2.yml
-    with:
-      execution_source: "Branch (main)"
-
   message:
-    needs: [call-workflow-manual-1, call-workflow-manual-2-local]
+    needs: [call-workflow-manual-1]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -28,3 +23,9 @@ jobs:
       with:
         script: return "main ブランチにマージされた の Actions"
         result-encoding: string
+
+  call-workflow-manual-2-local:
+    needs: [message]
+    uses: ./.github/workflows/manual-2.yml
+    with:
+      execution_source: "Branch (main)"
