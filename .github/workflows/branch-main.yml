@@ -1,5 +1,5 @@
 ---
-name: Branch（main）
+name: Branch (main)
 
 on:
   push:
@@ -9,9 +9,16 @@ on:
 jobs:
   call-workflow-manual-1:
     uses: tqer39/example-gha-multi-workflow/.github/workflows/manual-1.yml@main
+    with:
+      execution_source: "Branch (main)"
+
+  call-workflow-manual-2:
+    uses: tqer39/example-gha-multi-workflow/.github/workflows/manual-2.yml@main
+    with:
+      execution_source: "Branch (main)"
 
   message:
-    needs: ["call-workflow-manual-1"]
+    needs: [call-workflow-manual-1, call-workflow-manual-2]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
