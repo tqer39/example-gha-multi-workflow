@@ -1,0 +1,23 @@
+---
+name: Branch（main）
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  call-workflow-manual-1:
+    uses: tqer39/example-gha-multi-workflow/.github/workflows/manual-1.yml@main
+
+  message:
+    needs: ["call-workflow-manual-1"]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+    - name: message
+      uses: actions/github-script@v6
+      id: set-result
+      with:
+        script: return "main ブランチにマージされた の Actions"
+        result-encoding: string
