@@ -7,6 +7,8 @@ on:
 jobs:
   aws-deploy:
     uses: ./.github/workflows/aws-deploy.yml
+    with:
+      kakegoe: 'upload します！'
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
