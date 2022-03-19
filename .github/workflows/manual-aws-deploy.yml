@@ -3,59 +3,12 @@ name: AWS Deploy（s3）
 
 on:
   workflow_dispatch:
-    inputs:
-      execution_source:
-        description: 'manual'
-        required: true
-      AWS_ACCESS_KEY_ID:
-        description: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        required: true
-      AWS_SECRET_ACCESS_KEY:
-        description: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        required: true
-      AWS_BUCKET_NAME:
-        description: ${{ secrets.S3_BUCKET_NAME }}
-        required: true
-  workflow_call:
-    inputs:
-      execution_source:
-        required: true
-        type: string
-      AWS_ACCESS_KEY_ID:
-        required: true
-        type: string
-      AWS_SECRET_ACCESS_KEY:
-        required: true
-        type: string
-      AWS_BUCKET_NAME:
-        required: true
-        type: string
-
-env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
-  AWS_REGION: ap-northeast-1
-  AWS_DEFAULT_REGION: ap-northeast-1
 
 jobs:
-  UploadStaticFiles:
-    name: Upload static files
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      id: checkout
-      uses: actions/checkout@v3
-
-    - name: "Configure AWS credentials"
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ env.AWS_DEV_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ env.AWS_DEV_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
-
-    - name: s3 Sync
-      id: s3-sync
-      working-directory: src
-      run: |
-        aws s3 sync . s3://${{ env.AWS_BUCKET_NAME }}/
+  aws-deploy:
+    uses: ./.github/workflows/aws-deploy.yml
+    with:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+      AWS_REGION: ap-northeast-1
