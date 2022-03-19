@@ -1,5 +1,5 @@
 ---
-name: AWS Deploy（s3）
+name: Manual AWS Deploy（s3）
 
 on:
   workflow_dispatch:
