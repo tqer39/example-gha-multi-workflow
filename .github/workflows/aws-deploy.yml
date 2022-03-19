@@ -3,6 +3,10 @@ name: AWS Deploy（s3）
 
 on:
   workflow_call:
+    inputs:
+      kakegoe:
+        required: true
+        type: string
     secrets:
       AWS_ACCESS_KEY_ID:
         required: true
@@ -12,6 +16,9 @@ on:
         required: true
       AWS_BUCKET_NAME:
         required: true
+
+env:
+  yamabiko: ${{ inputs.kakegoe }}
 
 jobs:
   UploadStaticFiles:
@@ -33,4 +40,7 @@ jobs:
       id: s3-sync
       working-directory: src
       run: |
+        echo "(1) kakegoe: ${{ inputs.kakegoe }}"
+        echo "(2) yamabiko ${{ env.yamabiko }}"
+        echo "(3) yamabiko $yamabiko"
         aws s3 sync . s3://${{ secrets.AWS_BUCKET_NAME }}/
