@@ -25,12 +25,12 @@ jobs:
     - name: "Configure AWS credentials"
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: ${{ inputs.AWS_DEV_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ inputs.AWS_DEV_SECRET_ACCESS_KEY }}
-        aws-region: ${{ inputs.AWS_REGION }}
+        aws-access-key-id: ${{ secrets.AWS_DEV_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_DEV_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
 
     - name: s3 Sync
       id: s3-sync
       working-directory: src
       run: |
-        aws s3 sync . s3://${{ inputs.AWS_BUCKET_NAME }}/
+        aws s3 sync . s3://${{ secrets.AWS_BUCKET_NAME }}/
