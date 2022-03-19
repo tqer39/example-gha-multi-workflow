@@ -7,6 +7,9 @@ on:
       kakegoe:
         required: true
         type: string
+      hoge:
+        required: true
+        type: string
     secrets:
       AWS_ACCESS_KEY_ID:
         required: true
