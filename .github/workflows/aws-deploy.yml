@@ -43,4 +43,5 @@ jobs:
         echo "(1) kakegoe: ${{ inputs.kakegoe }}"
         echo "(2) yamabiko ${{ env.yamabiko }}"
         echo "(3) yamabiko $yamabiko"
+        echo "(4) hoge ${{ inputs.region }}"
         aws s3 sync . s3://${{ secrets.AWS_BUCKET_NAME }}/

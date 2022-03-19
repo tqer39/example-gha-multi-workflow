@@ -8,6 +8,7 @@ jobs:
   aws-deploy:
     uses: ./.github/workflows/aws-deploy.yml
     with:
+      region: ap-northeast-1
       kakegoe: 'upload します！'
     secrets:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
