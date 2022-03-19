@@ -7,7 +7,7 @@ on:
       kakegoe:
         required: true
         type: string
-      hoge:
+      region:
         required: true
         type: string
     secrets:
